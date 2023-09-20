@@ -68,6 +68,7 @@ from . import csatqa
 from . import haerae
 from . import cmmlu
 from . import indic_copa
+from . import indic_xnli
 
 ########################################
 # Translation tasks
@@ -351,7 +352,8 @@ TASK_REGISTRY = {
     **scrolls.construct_tasks(),
     **ceval.create_all_tasks(),
     **cmmlu.create_all_tasks(),
-    **indic_copa.construct_tasks()
+    **indic_copa.construct_tasks(),
+    **indic_xnli.construct_tasks()
 }
 
 

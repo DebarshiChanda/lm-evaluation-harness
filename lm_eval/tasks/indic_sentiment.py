@@ -45,14 +45,14 @@ class IndicSentiment(Task):
         return self.dataset["test"]
 
     def doc_to_text(self, doc):
-        return f"{doc["INDIC REVIEW"]}{SENTENCE_TEMPLATE}"
+        return "{}{}".format(doc["INDIC REVIEW"], self.SENTENCE_TEMPLATE)
 
     def doc_to_target(self, doc):
         return " {}".format(doc["LABEL"])
 
     def construct_requests(self, doc, ctx):
-        ll_positive, _ = rf.loglikelihood(ctx, f" {POSITIVE_LABEL}")
-        ll_negative, _ = rf.loglikelihood(ctx, f" {NEGATIVE_LABEL}")
+        ll_positive, _ = rf.loglikelihood(ctx, f" {self.POSITIVE_LABEL}")
+        ll_negative, _ = rf.loglikelihood(ctx, f" {self.NEGATIVE_LABEL}")
         return ll_positive, ll_negative
 
     def process_results(self, doc, results):

@@ -69,6 +69,7 @@ from . import haerae
 from . import cmmlu
 from . import indic_copa
 from . import indic_xnli
+from . import indic_sentiment
 
 ########################################
 # Translation tasks
@@ -353,7 +354,8 @@ TASK_REGISTRY = {
     **ceval.create_all_tasks(),
     **cmmlu.create_all_tasks(),
     **indic_copa.construct_tasks(),
-    **indic_xnli.construct_tasks()
+    **indic_xnli.construct_tasks(),
+    **indic_sentiment.construct_tasks()
 }
 
 

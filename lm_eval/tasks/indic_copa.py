@@ -104,8 +104,8 @@ class IndicCopa_ne(IndicCopa):
 
 class IndicCopa_or(IndicCopa):
     DATASET_NAME = "translation-or"
-    # CAUSE = "କାରଣ"
-    # EFFECT = "ତେଣୁ"
+    CAUSE = "କାରଣ"
+    EFFECT = "ତେଣୁ"
 
 class IndicCopa_pa(IndicCopa):
     DATASET_NAME = "translation-pa"

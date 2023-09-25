@@ -89,6 +89,16 @@ class IndicSentiment_bn(IndicSentiment): # Bengali
     SENTENCE_TEMPLATE = f"\nপ্রশ্ন: এই বাক্যটি কি {POSITIVE_LABEL} নাকি {NEGATIVE_LABEL}?\nউত্তর:"
 
 
+class IndicSentiment_en(IndicSentiment): # English
+    DATASET_NAME = "translation-hi"
+    POSITIVE_LABEL = "Positive"
+    NEGATIVE_LABEL = "Negative"
+    SENTENCE_TEMPLATE = f"\nQuestion: Is this sentence {POSITIVE_LABEL} or {NEGATIVE_LABEL}?\nAnswer:"
+
+    def doc_to_text(self, doc):
+        return "{}{}".format(doc["ENGLISH REVIEW"], self.SENTENCE_TEMPLATE)
+
+
 class IndicSentiment_gu(IndicSentiment): # Gujarati
     DATASET_NAME = "translation-gu"
     POSITIVE_LABEL = "સકારાત્મક"
@@ -159,11 +169,12 @@ class IndicSentiment_ur(IndicSentiment): # Urdu
     SENTENCE_TEMPLATE = f"\nسوال: کیا یہ جملہ مثبت ہے یا منفی؟\nجواب:"
 
 
-LANGS = ["as", "bn", "gu", "hi", "kn", "ml", "mr", "or", "pa", "ta", "te", "ur"]
+LANGS = ["as", "bn", "en", "gu", "hi", "kn", "ml", "mr", "or", "pa", "ta", "te", "ur"]
 
 LANG_CLASSES = [
     IndicSentiment_as,
     IndicSentiment_bn,
+    IndicSentiment_en,
     IndicSentiment_gu,
     IndicSentiment_hi,
     IndicSentiment_kn,

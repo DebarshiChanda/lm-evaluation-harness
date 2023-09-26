@@ -42,6 +42,7 @@ class IndicSentiment(Task):
         return self.dataset["validation"]
 
     def test_docs(self):
+        self.dataset["test"] = self.dataset["test"].filter(lambda example: example['LABEL'] is not None)
         return self.dataset["test"]
 
     def doc_to_text(self, doc):

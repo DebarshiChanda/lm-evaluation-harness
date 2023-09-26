@@ -58,7 +58,7 @@ class IndicSentiment(Task):
     def process_results(self, doc, results):
         ll_positive, ll_negative = results
         pred = ll_positive > ll_negative
-        gold = doc["LABEL"]
+        gold = {"Negative": 0, "Positive": 1}[doc["LABEL"]]
         return {"acc": pred == gold}
 
     def higher_is_better(self):

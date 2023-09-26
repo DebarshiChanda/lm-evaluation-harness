@@ -70,6 +70,7 @@ from . import cmmlu
 from . import indic_copa
 from . import indic_xnli
 from . import indic_sentiment
+from . import indic_xparaphrase
 
 ########################################
 # Translation tasks
@@ -355,7 +356,8 @@ TASK_REGISTRY = {
     **cmmlu.create_all_tasks(),
     **indic_copa.construct_tasks(),
     **indic_xnli.construct_tasks(),
-    **indic_sentiment.construct_tasks()
+    **indic_sentiment.construct_tasks(),
+    **indic_xparaphrase.construct_tasks()
 }
 
 

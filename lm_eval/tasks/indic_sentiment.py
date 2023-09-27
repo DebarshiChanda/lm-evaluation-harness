@@ -6,9 +6,8 @@ IndicSentiment is a new, multilingual, and n-way parallel dataset for sentiment 
 
 Dataset page: https://huggingface.co/datasets/ai4bharat/IndicSentiment
 """
-import numpy as np
 from lm_eval.base import rf, Task
-from lm_eval.metrics import mean, matthews_corrcoef, f1_score, yesno
+from lm_eval.metrics import mean
 
 
 _CITATION = """

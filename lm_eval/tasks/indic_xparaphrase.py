@@ -28,6 +28,7 @@ class IndicXParaphrase(Task):
     YES_LABEL = None
     NO_LABEL = None
     SENTENCE_TEMPLATE = None # Sentence 1: {}\nSentence 2: {}\nQuestion: Do both sentences mean the same thing?\nAnswer:
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
     def has_training_docs(self):
         return False
@@ -48,7 +49,7 @@ class IndicXParaphrase(Task):
         )
 
     def doc_to_target(self, doc):
-        return " {}".format(doc["label"])
+        return " {}".format(self.LABEL_MAP[doc["label"]])
 
     def construct_requests(self, doc, ctx):
         ll_yes, _ = rf.loglikelihood(ctx, f" {self.YES_LABEL}")
@@ -76,6 +77,7 @@ class IndicXParaphrase_as(IndicXParaphrase): # Assamese
     YES_LABEL = "হয়"
     NO_LABEL = "নহয়"
     SENTENCE_TEMPLATE = "বাক্য 1: {}\nবাক্য 2: {}\nপ্ৰশ্ন: দুয়োটা বাক্যৰ অৰ্থ একে নেকি?\nউত্তৰ:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_bn(IndicXParaphrase): # Bengali
@@ -83,6 +85,7 @@ class IndicXParaphrase_bn(IndicXParaphrase): # Bengali
     YES_LABEL = "হ্যাঁ"
     NO_LABEL = "না"
     SENTENCE_TEMPLATE = "বাক্য 1: {}\nবাক্য 2: {}\nপ্রশ্ন: উভয় বাক্যই কি একই জিনিস বোঝায়?\nউত্তর:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_gu(IndicXParaphrase): # Gujarati
@@ -90,6 +93,7 @@ class IndicXParaphrase_gu(IndicXParaphrase): # Gujarati
     YES_LABEL = "હા"
     NO_LABEL = "ના"
     SENTENCE_TEMPLATE = "વાક્ય 1: {}\nવાક્ય 2: {}\nપ્રશ્ન: શું બંને વાક્યોનો અર્થ એક જ છે?\nજવાબ:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_hi(IndicXParaphrase): # Hindi
@@ -97,6 +101,7 @@ class IndicXParaphrase_hi(IndicXParaphrase): # Hindi
     YES_LABEL = "हाँ"
     NO_LABEL = "नहीं"
     SENTENCE_TEMPLATE = "वाक्य 1: {}\nवाक्य 2: {}\nप्रश्न: क्या दोनों वाक्यों का मतलब एक ही है?\nउत्तर:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_kn(IndicXParaphrase): # Kannada
@@ -104,6 +109,7 @@ class IndicXParaphrase_kn(IndicXParaphrase): # Kannada
     YES_LABEL = "ಹೌದು"
     NO_LABEL = "ಇಲ್ಲ"
     SENTENCE_TEMPLATE = "ವಾಕ್ಯ 1: {}\nವಾಕ್ಯ 2: {}\nಪ್ರಶ್ನೆ: ಎರಡೂ ವಾಕ್ಯಗಳು ಒಂದೇ ಅರ್ಥವನ್ನು ಹೊಂದಿದೆಯೇ?\nಉತ್ತರ:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_ml(IndicXParaphrase): # Malayalam
@@ -111,6 +117,7 @@ class IndicXParaphrase_ml(IndicXParaphrase): # Malayalam
     YES_LABEL = "അതെ"
     NO_LABEL = "ഇല്ല"
     SENTENCE_TEMPLATE = "വാക്യം 1: {}\nവാക്യം 2: {}\nചോദ്യം: രണ്ട് വാക്യങ്ങളും അർത്ഥമാക്കുന്നത് ഒരേ കാര്യമാണോ?\nഉത്തരം:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_mr(IndicXParaphrase): # Marathi
@@ -118,6 +125,7 @@ class IndicXParaphrase_mr(IndicXParaphrase): # Marathi
     YES_LABEL = "होय"
     NO_LABEL = "नाही"
     SENTENCE_TEMPLATE = "वाक्य 1: {}\nवाक्य 2: {}\nप्रश्न: दोन्ही वाक्यांचा अर्थ एकच आहे का?\nउत्तर:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_or(IndicXParaphrase): # Oriya
@@ -125,6 +133,7 @@ class IndicXParaphrase_or(IndicXParaphrase): # Oriya
     YES_LABEL = "ହଁ"
     NO_LABEL = "ନା"
     SENTENCE_TEMPLATE = "ବାକ୍ୟ 1: {}\nସେଣ୍ଟେନ୍ସ 2: {}\nପ୍ରଶ୍ନ: ଉଭୟ ବାକ୍ୟର ସମାନ ଅର୍ଥ ଅଛି କି?\nଉତ୍ତର:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_pa(IndicXParaphrase): # Punjabi
@@ -132,6 +141,7 @@ class IndicXParaphrase_pa(IndicXParaphrase): # Punjabi
     YES_LABEL = "ਹਾਂ"
     NO_LABEL = "ਨਹੀਂ"
     SENTENCE_TEMPLATE = "ਵਾਕ 1: {}\nਵਾਕ 2: {}\nਸਵਾਲ: ਕੀ ਦੋਵੇਂ ਵਾਕਾਂ ਦਾ ਅਰਥ ਇੱਕੋ ਜਿਹਾ ਹੈ?\nਜਵਾਬ:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 class IndicXParaphrase_te(IndicXParaphrase): # Telugu
@@ -139,6 +149,7 @@ class IndicXParaphrase_te(IndicXParaphrase): # Telugu
     YES_LABEL = "అవును"
     NO_LABEL = "సంఖ్య"
     SENTENCE_TEMPLATE = "వాక్యం 1: {}\nవాక్యం 2: {}\nప్రశ్న: రెండు వాక్యాల అర్థం ఒకటేనా?\nసమాధానం:"
+    LABEL_MAP = {0: NO_LABEL, 1: YES_LABEL}
 
 
 LANGS = ["as", "bn", "gu", "hi", "kn", "ml", "mr", "or", "pa", "te"]

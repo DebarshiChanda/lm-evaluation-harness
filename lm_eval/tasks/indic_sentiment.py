@@ -27,6 +27,7 @@ class IndicSentiment(Task):
     POSITIVE_LABEL = None
     NEGATIVE_LABEL = None
     SENTENCE_TEMPLATE = None # \nQuestion: Is this sentence POSITIVE_LABEL or NEGATIVE_LABEL?\nAnswer:
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
     def has_training_docs(self):
         return False
@@ -48,7 +49,7 @@ class IndicSentiment(Task):
         return "{}{}".format(doc["INDIC REVIEW"], self.SENTENCE_TEMPLATE)
 
     def doc_to_target(self, doc):
-        return " {}".format(doc["LABEL"])
+        return " {}".format(self.LABEL_MAP[doc["LABEL"]])
 
     def construct_requests(self, doc, ctx):
         ll_positive, _ = rf.loglikelihood(ctx, f" {self.POSITIVE_LABEL}")
@@ -73,6 +74,7 @@ class IndicSentiment_as(IndicSentiment): # Assamese
     POSITIVE_LABEL = "ধনাত্মক"
     NEGATIVE_LABEL = "ঋণাত্মক"
     SENTENCE_TEMPLATE = f"\nপ্ৰশ্ন : এই বাক্যটো {POSITIVE_LABEL} নে {NEGATIVE_LABEL}?\nউত্তৰ:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 # class IndicSentiment_bd(IndicSentiment):
@@ -87,6 +89,7 @@ class IndicSentiment_bn(IndicSentiment): # Bengali
     POSITIVE_LABEL = "ইতিবাচক"
     NEGATIVE_LABEL = "নেতিবাচক"
     SENTENCE_TEMPLATE = f"\nপ্রশ্ন: এই বাক্যটি কি {POSITIVE_LABEL} নাকি {NEGATIVE_LABEL}?\nউত্তর:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_en(IndicSentiment): # English
@@ -94,6 +97,7 @@ class IndicSentiment_en(IndicSentiment): # English
     POSITIVE_LABEL = "Positive"
     NEGATIVE_LABEL = "Negative"
     SENTENCE_TEMPLATE = f"\nQuestion: Is this sentence {POSITIVE_LABEL} or {NEGATIVE_LABEL}?\nAnswer:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
     def doc_to_text(self, doc):
         return "{}{}".format(doc["ENGLISH REVIEW"], self.SENTENCE_TEMPLATE)
@@ -104,6 +108,7 @@ class IndicSentiment_gu(IndicSentiment): # Gujarati
     POSITIVE_LABEL = "સકારાત્મક"
     NEGATIVE_LABEL = "નકારાત્મક"
     SENTENCE_TEMPLATE = f"\nપ્રશ્ન: આ વાક્ય {POSITIVE_LABEL} છે કે {NEGATIVE_LABEL}?\nજવાબ:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_hi(IndicSentiment): # Hindi
@@ -111,6 +116,7 @@ class IndicSentiment_hi(IndicSentiment): # Hindi
     POSITIVE_LABEL = "सकारात्मक"
     NEGATIVE_LABEL = "नकारात्मक"
     SENTENCE_TEMPLATE = f"\nप्रश्न: यह वाक्य {POSITIVE_LABEL} है या {NEGATIVE_LABEL}?\nउत्तर:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_kn(IndicSentiment): # Kannada
@@ -118,6 +124,7 @@ class IndicSentiment_kn(IndicSentiment): # Kannada
     POSITIVE_LABEL = "ಧನಾತ್ಮಕ"
     NEGATIVE_LABEL = "ಋಣಾತ್ಮಕ"
     SENTENCE_TEMPLATE = f"\nಪ್ರಶ್ನೆ: ಈ ವಾಕ್ಯವು {POSITIVE_LABEL}ವೇ ಅಥವಾ {NEGATIVE_LABEL}ವೇ?\nಉತ್ತರ:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_ml(IndicSentiment): # Malayalam
@@ -125,6 +132,7 @@ class IndicSentiment_ml(IndicSentiment): # Malayalam
     POSITIVE_LABEL = "പോസിറ്റീവ്"
     NEGATIVE_LABEL = "നെഗറ്റീവ്"
     SENTENCE_TEMPLATE = f"\nചോദ്യം: ഈ വാചകം {POSITIVE_LABEL} ആണോ {NEGATIVE_LABEL} ആണോ?\nഉത്തരം:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_mr(IndicSentiment): # Marathi
@@ -132,6 +140,7 @@ class IndicSentiment_mr(IndicSentiment): # Marathi
     POSITIVE_LABEL = "सकारात्मक"
     NEGATIVE_LABEL = "नकारात्मक"
     SENTENCE_TEMPLATE = f"\nप्रश्न: हे वाक्य {POSITIVE_LABEL} आहे की {NEGATIVE_LABEL}?\nउत्तर:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_or(IndicSentiment): # Oriya
@@ -139,6 +148,7 @@ class IndicSentiment_or(IndicSentiment): # Oriya
     POSITIVE_LABEL = "ସକାରାତ୍ମକ"
     NEGATIVE_LABEL = "ନକାରାତ୍ମକ"
     SENTENCE_TEMPLATE = f"\nପ୍ରଶ୍ନ: ଏହି ବାକ୍ୟଟି {POSITIVE_LABEL} କି {NEGATIVE_LABEL}?\nଉତ୍ତର:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_pa(IndicSentiment): # Punjabi
@@ -146,6 +156,7 @@ class IndicSentiment_pa(IndicSentiment): # Punjabi
     POSITIVE_LABEL = "ਸਕਾਰਾਤਮਕ"
     NEGATIVE_LABEL = "ਨਕਾਰਾਤਮਕ"
     SENTENCE_TEMPLATE = f"\nਸਵਾਲ: ਕੀ ਇਹ ਵਾਕ {POSITIVE_LABEL} ਹੈ ਜਾਂ {NEGATIVE_LABEL}?\nਜਵਾਬ:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_ta(IndicSentiment): # Tamil
@@ -153,6 +164,7 @@ class IndicSentiment_ta(IndicSentiment): # Tamil
     POSITIVE_LABEL = "நேர்மறை"
     NEGATIVE_LABEL = "எதிர்மறை"
     SENTENCE_TEMPLATE = f"\nகேள்வி: இந்த வாக்கியம் {POSITIVE_LABEL}யா {NEGATIVE_LABEL}யா?\nபதில்:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_te(IndicSentiment): # Telugu
@@ -160,6 +172,7 @@ class IndicSentiment_te(IndicSentiment): # Telugu
     POSITIVE_LABEL = "సానుకూల"
     NEGATIVE_LABEL = "ప్రతికూల"
     SENTENCE_TEMPLATE = f"\nప్రశ్న: ఈ వాక్యం {POSITIVE_LABEL}మా లేదా {NEGATIVE_LABEL}మా?\nసమాధానం:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 class IndicSentiment_ur(IndicSentiment): # Urdu
@@ -167,6 +180,7 @@ class IndicSentiment_ur(IndicSentiment): # Urdu
     POSITIVE_LABEL = "مثبت"
     NEGATIVE_LABEL = "منفی"
     SENTENCE_TEMPLATE = f"\nسوال: کیا یہ جملہ مثبت ہے یا منفی؟\nجواب:"
+    LABEL_MAP = {"Negative": NEGATIVE_LABEL, "Positive": POSITIVE_LABEL}
 
 
 LANGS = ["as", "bn", "en", "gu", "hi", "kn", "ml", "mr", "or", "pa", "ta", "te", "ur"]
